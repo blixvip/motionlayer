@@ -1,0 +1,11 @@
+{
+  "duration": 18,
+  "assertions": [
+    { "kind": "appearsBy", "selector": "#ov-hook-title", "bySec": 1.1 },
+    { "kind": "staysInFrame", "selector": "#ov-hook" },
+    { "kind": "staysInFrame", "selector": "#ov-lower" },
+    { "kind": "staysInFrame", "selector": "#ov-steps" },
+    { "kind": "staysInFrame", "selector": "#ov-quote" },
+    { "kind": "staysInFrame", "selector": "#ov-stat" }
+  ]
+}

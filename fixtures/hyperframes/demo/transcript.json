@@ -1,0 +1,11 @@
+[
+  { "text": "A", "start": 0.0, "end": 0.12 },
+  { "text": "strong", "start": 0.12, "end": 0.48 },
+  { "text": "motion", "start": 0.48, "end": 0.78 },
+  { "text": "layer", "start": 0.78, "end": 1.05 },
+  { "text": "starts", "start": 1.05, "end": 1.38 },
+  { "text": "by", "start": 1.38, "end": 1.52 },
+  { "text": "protecting", "start": 1.52, "end": 2.05 },
+  { "text": "the", "start": 2.05, "end": 2.2 },
+  { "text": "edit.", "start": 2.2, "end": 2.65 }
+]

@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Shader Harness</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #111; overflow: hidden; }
+  canvas { display: block; width: 100vw; height: 100vh; }
+  #err {
+    position: fixed; inset: 0 0 auto 0; z-index: 10;
+    background: #a00; color: #fff; padding: 10px;
+    font: 12px/1.5 monospace; white-space: pre-wrap; display: none;
+  }
+</style>
+</head>
+<body>
+<div id="err"></div>
+<canvas id="c"></canvas>
+
+<!-- Paste your fragment shader below. Uniforms provided: u_resolution (px), u_time (seconds, wrapped), u_mouse (aspect-corrected), u_frame. -->
+<script id="frag" type="x-shader/x-fragment">#version 300 es
+precision highp float;
+uniform vec2 u_resolution;
+uniform float u_time;
+uniform vec2 u_mouse;
+uniform int u_frame;
+out vec4 outColor;
+
+float hash21(vec2 p) {
+  p = fract(p * vec2(123.34, 456.21));
+  p += dot(p, p + 45.32);
+  return fract(p.x * p.y);
+}
+
+void main() {
+  vec2 uv = (gl_FragCoord.xy * 2.0 - u_resolution) / min(u_resolution.x, u_resolution.y);
+  float t = mod(u_time, 3600.0);
+  float foldA = sin(uv.x * 2.15 + uv.y * 1.28 + t * 0.17);
+  float foldB = sin(uv.x * -1.36 + uv.y * 2.72 - t * 0.11 + 1.7);
+  float paper = 0.5 + 0.25 * foldA + 0.18 * foldB;
+  float keyCenter = sin(t * 0.13) * 0.42;
+  float key = exp(-abs(uv.x * 0.72 + uv.y * 0.31 - keyCenter) * 2.4);
+  float edge = 1.0 - smoothstep(0.18, 1.42, length(uv * vec2(0.72, 0.86)));
+  vec3 neutral = vec3(0.955, 0.948, 0.918);
+  vec3 lime = vec3(0.61, 0.76, 0.24);
+  vec3 col = neutral - mix(vec3(0.0), vec3(0.035), paper);
+  col = mix(col, lime, key * 0.105);
+  col *= 0.965 + edge * 0.035;
+  col += (hash21(gl_FragCoord.xy + fract(t)) - 0.5) / 255.0;
+  outColor = vec4(clamp(col, 0.0, 1.0), 1.0);
+}
+</script>
+
+<script id="vert" type="x-shader/x-vertex">#version 300 es
+void main() {
+  vec2 p = vec2(float((gl_VertexID << 1) & 2), float(gl_VertexID & 2));
+  gl_Position = vec4(p * 2.0 - 1.0, 0.0, 1.0);
+}
+</script>
+
+<script>
+(function () {
+  const canvas = document.getElementById('c');
+  const errBox = document.getElementById('err');
+  const harness = { ok: false, error: null };
+  window.__HARNESS = harness;
+
+  function fail(msg) {
+    harness.error = msg;
+    errBox.textContent = msg;
+    errBox.style.display = 'block';
+    console.error('[shader-harness]', msg);
+  }
+
+  const gl = canvas.getContext('webgl2', { antialias: false });
+  if (!gl) { fail('WebGL2 unavailable in this browser.'); return; }
+
+  function compile(type, src) {
+    const sh = gl.createShader(type);
+    gl.shaderSource(sh, src);
+    gl.compileShader(sh);
+    if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) {
+      return { log: gl.getShaderInfoLog(sh) || 'unknown compile error' };
+    }
+    return { shader: sh };
+  }
+
+  const fragSrc = document.getElementById('frag').textContent;
+  const vertSrc = document.getElementById('vert').textContent;
+  const f = compile(gl.FRAGMENT_SHADER, fragSrc);
+  if (f.log) { fail('FRAGMENT SHADER ERROR:\n' + f.log); return; }
+  const v = compile(gl.VERTEX_SHADER, vertSrc);
+  if (v.log) { fail('VERTEX SHADER ERROR:\n' + v.log); return; }
+
+  const prog = gl.createProgram();
+  gl.attachShader(prog, v.shader);
+  gl.attachShader(prog, f.shader);
+  gl.linkProgram(prog);
+  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+    fail('LINK ERROR:\n' + (gl.getProgramInfoLog(prog) || 'unknown link error'));
+    return;
+  }
+  gl.useProgram(prog);
+
+  const U = {
+    resolution: gl.getUniformLocation(prog, 'u_resolution'),
+    time: gl.getUniformLocation(prog, 'u_time'),
+    mouse: gl.getUniformLocation(prog, 'u_mouse'),
+    frame: gl.getUniformLocation(prog, 'u_frame'),
+  };
+
+  const DPR_CAP = 2;
+  function resize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, DPR_CAP);
+    const w = Math.floor(canvas.clientWidth * dpr);
+    const h = Math.floor(canvas.clientHeight * dpr);
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width = w;
+      canvas.height = h;
+      gl.viewport(0, 0, w, h);
+    }
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  const mouse = [0, 0];
+  window.addEventListener('pointermove', function (e) {
+    const dpr = Math.min(window.devicePixelRatio || 1, DPR_CAP);
+    const x = e.clientX * dpr, y = (canvas.clientHeight - e.clientY) * dpr;
+    mouse[0] = x * 2 - canvas.width;
+    mouse[1] = y * 2 - canvas.height;
+    const m = Math.min(canvas.width, canvas.height);
+    mouse[0] /= m; mouse[1] /= m;
+  });
+
+  let frames = 0, fpsT = performance.now();
+  const t0 = performance.now();
+
+  function draw(now) {
+    resize();
+    const t = ((now - t0) / 1000) % 3600;
+    gl.uniform2f(U.resolution, canvas.width, canvas.height);
+    gl.uniform1f(U.time, t);
+    gl.uniform2f(U.mouse, mouse[0], mouse[1]);
+    gl.uniform1i(U.frame, frames);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+    frames++;
+    if (now - fpsT >= 1000) {
+      document.title = 'Shader Harness — ' + frames + ' fps';
+      frames = 0; fpsT = now;
+    }
+  }
+
+  function loop(now) {
+    if (!document.hidden) draw(now);
+    requestAnimationFrame(loop);
+  }
+
+  harness.ok = true;
+  console.log('[shader-harness] rendering. uniforms:', Object.keys(U).join(', '));
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>

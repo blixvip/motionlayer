@@ -1,0 +1,718 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-05T00:03:47.329Z",
+  "title": "Design System: MotionLayer",
+  "extensions": {
+    "colorMeta": {
+      "studio-ground": {
+        "role": "neutral",
+        "displayName": "Studio Ground",
+        "tonalRamp": [
+          "oklch(15.00% 0.0080 285.63)",
+          "oklch(26.43% 0.0080 285.63)",
+          "oklch(37.86% 0.0080 285.63)",
+          "oklch(49.29% 0.0080 285.63)",
+          "oklch(60.71% 0.0080 285.63)",
+          "oklch(72.14% 0.0080 285.63)",
+          "oklch(83.57% 0.0080 285.63)",
+          "oklch(95.00% 0.0080 285.63)"
+        ]
+      },
+      "studio-panel": {
+        "role": "neutral",
+        "displayName": "Studio Panel",
+        "tonalRamp": [
+          "oklch(15.00% 0.0116 285.43)",
+          "oklch(26.43% 0.0116 285.43)",
+          "oklch(37.86% 0.0116 285.43)",
+          "oklch(49.29% 0.0116 285.43)",
+          "oklch(60.71% 0.0116 285.43)",
+          "oklch(72.14% 0.0116 285.43)",
+          "oklch(83.57% 0.0116 285.43)",
+          "oklch(95.00% 0.0116 285.43)"
+        ]
+      },
+      "studio-line": {
+        "role": "neutral",
+        "displayName": "Studio Line",
+        "tonalRamp": [
+          "oklch(15.00% 0.0160 285.44)",
+          "oklch(26.43% 0.0160 285.44)",
+          "oklch(37.86% 0.0160 285.44)",
+          "oklch(49.29% 0.0160 285.44)",
+          "oklch(60.71% 0.0160 285.44)",
+          "oklch(72.14% 0.0160 285.44)",
+          "oklch(83.57% 0.0160 285.44)",
+          "oklch(95.00% 0.0160 285.44)"
+        ]
+      },
+      "studio-text": {
+        "role": "neutral",
+        "displayName": "Studio Text",
+        "tonalRamp": [
+          "oklch(15.00% 0.0067 286.27)",
+          "oklch(26.43% 0.0067 286.27)",
+          "oklch(37.86% 0.0067 286.27)",
+          "oklch(49.29% 0.0067 286.27)",
+          "oklch(60.71% 0.0067 286.27)",
+          "oklch(72.14% 0.0067 286.27)",
+          "oklch(83.57% 0.0067 286.27)",
+          "oklch(95.00% 0.0067 286.27)"
+        ]
+      },
+      "studio-muted": {
+        "role": "neutral",
+        "displayName": "Studio Muted",
+        "tonalRamp": [
+          "oklch(15.00% 0.0218 285.81)",
+          "oklch(26.43% 0.0218 285.81)",
+          "oklch(37.86% 0.0218 285.81)",
+          "oklch(49.29% 0.0218 285.81)",
+          "oklch(60.71% 0.0218 285.81)",
+          "oklch(72.14% 0.0218 285.81)",
+          "oklch(83.57% 0.0218 285.81)",
+          "oklch(95.00% 0.0218 285.81)"
+        ]
+      },
+      "studio-focus": {
+        "role": "primary",
+        "displayName": "Studio Focus",
+        "tonalRamp": [
+          "oklch(15.00% 0.0416 285.46)",
+          "oklch(26.43% 0.0416 285.46)",
+          "oklch(37.86% 0.0416 285.46)",
+          "oklch(49.29% 0.0416 285.46)",
+          "oklch(60.71% 0.0416 285.46)",
+          "oklch(72.14% 0.0416 285.46)",
+          "oklch(83.57% 0.0416 285.46)",
+          "oklch(95.00% 0.0416 285.46)"
+        ]
+      },
+      "build-action": {
+        "role": "primary",
+        "displayName": "Build Action",
+        "tonalRamp": [
+          "oklch(15.00% 0.0217 285.96)",
+          "oklch(26.43% 0.0217 285.96)",
+          "oklch(37.86% 0.0217 285.96)",
+          "oklch(49.29% 0.0217 285.96)",
+          "oklch(60.71% 0.0217 285.96)",
+          "oklch(72.14% 0.0217 285.96)",
+          "oklch(83.57% 0.0217 285.96)",
+          "oklch(95.00% 0.0217 285.96)"
+        ]
+      },
+      "build-action-hover": {
+        "role": "primary",
+        "displayName": "Build Action Hover",
+        "tonalRamp": [
+          "oklch(15.00% 0.0147 286.12)",
+          "oklch(26.43% 0.0147 286.12)",
+          "oklch(37.86% 0.0147 286.12)",
+          "oklch(49.29% 0.0147 286.12)",
+          "oklch(60.71% 0.0147 286.12)",
+          "oklch(72.14% 0.0147 286.12)",
+          "oklch(83.57% 0.0147 286.12)",
+          "oklch(95.00% 0.0147 286.12)"
+        ]
+      },
+      "build-ink": {
+        "role": "neutral",
+        "displayName": "Build Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.0267 284.18)",
+          "oklch(26.43% 0.0267 284.18)",
+          "oklch(37.86% 0.0267 284.18)",
+          "oklch(49.29% 0.0267 284.18)",
+          "oklch(60.71% 0.0267 284.18)",
+          "oklch(72.14% 0.0267 284.18)",
+          "oklch(83.57% 0.0267 284.18)",
+          "oklch(95.00% 0.0267 284.18)"
+        ]
+      },
+      "graphics-ground": {
+        "role": "neutral",
+        "displayName": "Graphics Ground",
+        "tonalRamp": [
+          "oklch(15.00% 0.0117 285.38)",
+          "oklch(26.43% 0.0117 285.38)",
+          "oklch(37.86% 0.0117 285.38)",
+          "oklch(49.29% 0.0117 285.38)",
+          "oklch(60.71% 0.0117 285.38)",
+          "oklch(72.14% 0.0117 285.38)",
+          "oklch(83.57% 0.0117 285.38)",
+          "oklch(95.00% 0.0117 285.38)"
+        ]
+      },
+      "graphics-panel": {
+        "role": "neutral",
+        "displayName": "Graphics Panel",
+        "tonalRamp": [
+          "oklch(15.00% 0.0151 285.24)",
+          "oklch(26.43% 0.0151 285.24)",
+          "oklch(37.86% 0.0151 285.24)",
+          "oklch(49.29% 0.0151 285.24)",
+          "oklch(60.71% 0.0151 285.24)",
+          "oklch(72.14% 0.0151 285.24)",
+          "oklch(83.57% 0.0151 285.24)",
+          "oklch(95.00% 0.0151 285.24)"
+        ]
+      },
+      "graphics-control": {
+        "role": "neutral",
+        "displayName": "Graphics Control",
+        "tonalRamp": [
+          "oklch(15.00% 0.0167 285.20)",
+          "oklch(26.43% 0.0167 285.20)",
+          "oklch(37.86% 0.0167 285.20)",
+          "oklch(49.29% 0.0167 285.20)",
+          "oklch(60.71% 0.0167 285.20)",
+          "oklch(72.14% 0.0167 285.20)",
+          "oklch(83.57% 0.0167 285.20)",
+          "oklch(95.00% 0.0167 285.20)"
+        ]
+      },
+      "graphics-control-hover": {
+        "role": "neutral",
+        "displayName": "Graphics Control Hover",
+        "tonalRamp": [
+          "oklch(15.00% 0.0212 285.15)",
+          "oklch(26.43% 0.0212 285.15)",
+          "oklch(37.86% 0.0212 285.15)",
+          "oklch(49.29% 0.0212 285.15)",
+          "oklch(60.71% 0.0212 285.15)",
+          "oklch(72.14% 0.0212 285.15)",
+          "oklch(83.57% 0.0212 285.15)",
+          "oklch(95.00% 0.0212 285.15)"
+        ]
+      },
+      "graphics-line": {
+        "role": "neutral",
+        "displayName": "Graphics Line",
+        "tonalRamp": [
+          "oklch(15.00% 0.0223 285.23)",
+          "oklch(26.43% 0.0223 285.23)",
+          "oklch(37.86% 0.0223 285.23)",
+          "oklch(49.29% 0.0223 285.23)",
+          "oklch(60.71% 0.0223 285.23)",
+          "oklch(72.14% 0.0223 285.23)",
+          "oklch(83.57% 0.0223 285.23)",
+          "oklch(95.00% 0.0223 285.23)"
+        ]
+      },
+      "graphics-field": {
+        "role": "neutral",
+        "displayName": "Graphics Field",
+        "tonalRamp": [
+          "oklch(15.00% 0.0117 285.35)",
+          "oklch(26.43% 0.0117 285.35)",
+          "oklch(37.86% 0.0117 285.35)",
+          "oklch(49.29% 0.0117 285.35)",
+          "oklch(60.71% 0.0117 285.35)",
+          "oklch(72.14% 0.0117 285.35)",
+          "oklch(83.57% 0.0117 285.35)",
+          "oklch(95.00% 0.0117 285.35)"
+        ]
+      },
+      "graphics-text": {
+        "role": "neutral",
+        "displayName": "Graphics Text",
+        "tonalRamp": [
+          "oklch(15.00% 0.0080 286.25)",
+          "oklch(26.43% 0.0080 286.25)",
+          "oklch(37.86% 0.0080 286.25)",
+          "oklch(49.29% 0.0080 286.25)",
+          "oklch(60.71% 0.0080 286.25)",
+          "oklch(72.14% 0.0080 286.25)",
+          "oklch(83.57% 0.0080 286.25)",
+          "oklch(95.00% 0.0080 286.25)"
+        ]
+      },
+      "graphics-muted": {
+        "role": "neutral",
+        "displayName": "Graphics Muted",
+        "tonalRamp": [
+          "oklch(15.00% 0.0258 285.74)",
+          "oklch(26.43% 0.0258 285.74)",
+          "oklch(37.86% 0.0258 285.74)",
+          "oklch(49.29% 0.0258 285.74)",
+          "oklch(60.71% 0.0258 285.74)",
+          "oklch(72.14% 0.0258 285.74)",
+          "oklch(83.57% 0.0258 285.74)",
+          "oklch(95.00% 0.0258 285.74)"
+        ]
+      },
+      "graphics-action": {
+        "role": "primary",
+        "displayName": "Graphics Action",
+        "tonalRamp": [
+          "oklch(15.00% 0.0274 285.82)",
+          "oklch(26.43% 0.0274 285.82)",
+          "oklch(37.86% 0.0274 285.82)",
+          "oklch(49.29% 0.0274 285.82)",
+          "oklch(60.71% 0.0274 285.82)",
+          "oklch(72.14% 0.0274 285.82)",
+          "oklch(83.57% 0.0274 285.82)",
+          "oklch(95.00% 0.0274 285.82)"
+        ]
+      },
+      "graphics-action-hover": {
+        "role": "primary",
+        "displayName": "Graphics Action Hover",
+        "tonalRamp": [
+          "oklch(15.00% 0.0161 286.08)",
+          "oklch(26.43% 0.0161 286.08)",
+          "oklch(37.86% 0.0161 286.08)",
+          "oklch(49.29% 0.0161 286.08)",
+          "oklch(60.71% 0.0161 286.08)",
+          "oklch(72.14% 0.0161 286.08)",
+          "oklch(83.57% 0.0161 286.08)",
+          "oklch(95.00% 0.0161 286.08)"
+        ]
+      },
+      "graphics-action-ink": {
+        "role": "primary",
+        "displayName": "Graphics Action Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.0226 284.64)",
+          "oklch(26.43% 0.0226 284.64)",
+          "oklch(37.86% 0.0226 284.64)",
+          "oklch(49.29% 0.0226 284.64)",
+          "oklch(60.71% 0.0226 284.64)",
+          "oklch(72.14% 0.0226 284.64)",
+          "oklch(83.57% 0.0226 284.64)",
+          "oklch(95.00% 0.0226 284.64)"
+        ]
+      },
+      "selected-panel": {
+        "role": "neutral",
+        "displayName": "Selected Panel",
+        "tonalRamp": [
+          "oklch(15.00% 0.0231 285.00)",
+          "oklch(26.43% 0.0231 285.00)",
+          "oklch(37.86% 0.0231 285.00)",
+          "oklch(49.29% 0.0231 285.00)",
+          "oklch(60.71% 0.0231 285.00)",
+          "oklch(72.14% 0.0231 285.00)",
+          "oklch(83.57% 0.0231 285.00)",
+          "oklch(95.00% 0.0231 285.00)"
+        ]
+      },
+      "reference-sample": {
+        "role": "primary",
+        "displayName": "Reference Sample",
+        "tonalRamp": [
+          "oklch(15.00% 0.1109 280.90)",
+          "oklch(26.43% 0.1109 280.90)",
+          "oklch(37.86% 0.1109 280.90)",
+          "oklch(49.29% 0.1109 280.90)",
+          "oklch(60.71% 0.1109 280.90)",
+          "oklch(72.14% 0.1109 280.90)",
+          "oklch(83.57% 0.1109 280.90)",
+          "oklch(95.00% 0.1109 280.90)"
+        ]
+      },
+      "frame-ground": {
+        "role": "neutral",
+        "displayName": "Frame Ground",
+        "tonalRamp": [
+          "oklch(15.00% 0.0343 282.58)",
+          "oklch(26.43% 0.0343 282.58)",
+          "oklch(37.86% 0.0343 282.58)",
+          "oklch(49.29% 0.0343 282.58)",
+          "oklch(60.71% 0.0343 282.58)",
+          "oklch(72.14% 0.0343 282.58)",
+          "oklch(83.57% 0.0343 282.58)",
+          "oklch(95.00% 0.0343 282.58)"
+        ]
+      },
+      "frame-ink": {
+        "role": "neutral",
+        "displayName": "Frame Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.0053 286.30)",
+          "oklch(26.43% 0.0053 286.30)",
+          "oklch(37.86% 0.0053 286.30)",
+          "oklch(49.29% 0.0053 286.30)",
+          "oklch(60.71% 0.0053 286.30)",
+          "oklch(72.14% 0.0053 286.30)",
+          "oklch(83.57% 0.0053 286.30)",
+          "oklch(95.00% 0.0053 286.30)"
+        ]
+      },
+      "frame-accent": {
+        "role": "primary",
+        "displayName": "Frame Accent",
+        "tonalRamp": [
+          "oklch(15.00% 0.1041 283.27)",
+          "oklch(26.43% 0.1041 283.27)",
+          "oklch(37.86% 0.1041 283.27)",
+          "oklch(49.29% 0.1041 283.27)",
+          "oklch(60.71% 0.1041 283.27)",
+          "oklch(72.14% 0.1041 283.27)",
+          "oklch(83.57% 0.1041 283.27)",
+          "oklch(95.00% 0.1041 283.27)"
+        ]
+      },
+      "frame-secondary": {
+        "role": "secondary",
+        "displayName": "Frame Secondary",
+        "tonalRamp": [
+          "oklch(15.00% 0.0983 278.16)",
+          "oklch(26.43% 0.0983 278.16)",
+          "oklch(37.86% 0.0983 278.16)",
+          "oklch(49.29% 0.0983 278.16)",
+          "oklch(60.71% 0.0983 278.16)",
+          "oklch(72.14% 0.0983 278.16)",
+          "oklch(83.57% 0.0983 278.16)",
+          "oklch(95.00% 0.0983 278.16)"
+        ]
+      },
+      "legacy-ink": {
+        "role": "neutral",
+        "displayName": "Legacy Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.0055 247.80)",
+          "oklch(26.43% 0.0055 247.80)",
+          "oklch(37.86% 0.0055 247.80)",
+          "oklch(49.29% 0.0055 247.80)",
+          "oklch(60.71% 0.0055 247.80)",
+          "oklch(72.14% 0.0055 247.80)",
+          "oklch(83.57% 0.0055 247.80)",
+          "oklch(95.00% 0.0055 247.80)"
+        ]
+      },
+      "legacy-panel": {
+        "role": "neutral",
+        "displayName": "Legacy Panel",
+        "tonalRamp": [
+          "oklch(15.00% 0.0078 248.25)",
+          "oklch(26.43% 0.0078 248.25)",
+          "oklch(37.86% 0.0078 248.25)",
+          "oklch(49.29% 0.0078 248.25)",
+          "oklch(60.71% 0.0078 248.25)",
+          "oklch(72.14% 0.0078 248.25)",
+          "oklch(83.57% 0.0078 248.25)",
+          "oklch(95.00% 0.0078 248.25)"
+        ]
+      },
+      "legacy-line": {
+        "role": "neutral",
+        "displayName": "Legacy Line",
+        "tonalRamp": [
+          "oklch(15.00% 0.0123 243.24)",
+          "oklch(26.43% 0.0123 243.24)",
+          "oklch(37.86% 0.0123 243.24)",
+          "oklch(49.29% 0.0123 243.24)",
+          "oklch(60.71% 0.0123 243.24)",
+          "oklch(72.14% 0.0123 243.24)",
+          "oklch(83.57% 0.0123 243.24)",
+          "oklch(95.00% 0.0123 243.24)"
+        ]
+      },
+      "legacy-text": {
+        "role": "neutral",
+        "displayName": "Legacy Text",
+        "tonalRamp": [
+          "oklch(15.00% 0.0086 128.56)",
+          "oklch(26.43% 0.0086 128.56)",
+          "oklch(37.86% 0.0086 128.56)",
+          "oklch(49.29% 0.0086 128.56)",
+          "oklch(60.71% 0.0086 128.56)",
+          "oklch(72.14% 0.0086 128.56)",
+          "oklch(83.57% 0.0086 128.56)",
+          "oklch(95.00% 0.0086 128.56)"
+        ]
+      },
+      "legacy-muted": {
+        "role": "neutral",
+        "displayName": "Legacy Muted",
+        "tonalRamp": [
+          "oklch(15.00% 0.0097 179.46)",
+          "oklch(26.43% 0.0097 179.46)",
+          "oklch(37.86% 0.0097 179.46)",
+          "oklch(49.29% 0.0097 179.46)",
+          "oklch(60.71% 0.0097 179.46)",
+          "oklch(72.14% 0.0097 179.46)",
+          "oklch(83.57% 0.0097 179.46)",
+          "oklch(95.00% 0.0097 179.46)"
+        ]
+      },
+      "legacy-registration": {
+        "role": "primary",
+        "displayName": "Legacy Registration",
+        "tonalRamp": [
+          "oklch(15.00% 0.2149 124.79)",
+          "oklch(26.43% 0.2149 124.79)",
+          "oklch(37.86% 0.2149 124.79)",
+          "oklch(49.29% 0.2149 124.79)",
+          "oklch(60.71% 0.2149 124.79)",
+          "oklch(72.14% 0.2149 124.79)",
+          "oklch(83.57% 0.2149 124.79)",
+          "oklch(95.00% 0.2149 124.79)"
+        ]
+      },
+      "legacy-danger": {
+        "role": "secondary",
+        "displayName": "Legacy Danger",
+        "tonalRamp": [
+          "oklch(15.00% 0.1818 24.75)",
+          "oklch(26.43% 0.1818 24.75)",
+          "oklch(37.86% 0.1818 24.75)",
+          "oklch(49.29% 0.1818 24.75)",
+          "oklch(60.71% 0.1818 24.75)",
+          "oklch(72.14% 0.1818 24.75)",
+          "oklch(83.57% 0.1818 24.75)",
+          "oklch(95.00% 0.1818 24.75)"
+        ]
+      },
+      "legacy-accepted": {
+        "role": "secondary",
+        "displayName": "Legacy Accepted",
+        "tonalRamp": [
+          "oklch(15.00% 0.1405 257.44)",
+          "oklch(26.43% 0.1405 257.44)",
+          "oklch(37.86% 0.1405 257.44)",
+          "oklch(49.29% 0.1405 257.44)",
+          "oklch(60.71% 0.1405 257.44)",
+          "oklch(72.14% 0.1405 257.44)",
+          "oklch(83.57% 0.1405 257.44)",
+          "oklch(95.00% 0.1405 257.44)"
+        ]
+      },
+      "legacy-suggested": {
+        "role": "secondary",
+        "displayName": "Legacy Suggested",
+        "tonalRamp": [
+          "oklch(15.00% 0.1135 77.92)",
+          "oklch(26.43% 0.1135 77.92)",
+          "oklch(37.86% 0.1135 77.92)",
+          "oklch(49.29% 0.1135 77.92)",
+          "oklch(60.71% 0.1135 77.92)",
+          "oklch(72.14% 0.1135 77.92)",
+          "oklch(83.57% 0.1135 77.92)",
+          "oklch(95.00% 0.1135 77.92)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Studio display",
+        "purpose": "Local Barlow Condensed in the Script Studio introduction."
+      },
+      "frame-display": {
+        "displayName": "Condensed frame display",
+        "purpose": "Scale-relative, semantic scene headlines."
+      },
+      "frame-accent": {
+        "displayName": "Serif italic accent",
+        "purpose": "Instrument Serif italic; one final displayed word per headline."
+      },
+      "script": {
+        "displayName": "Script text",
+        "purpose": "Editable source reading text."
+      },
+      "body": {
+        "displayName": "Graphics body",
+        "purpose": "Compact Manrope inspector and scene controls."
+      },
+      "label": {
+        "displayName": "Field label",
+        "purpose": "Readable labels for compact controls."
+      },
+      "legacy-display": {
+        "displayName": "Legacy display",
+        "purpose": "Existing Space Grotesk authentication/dashboard surfaces only."
+      }
+    },
+    "shadows": [
+      {
+        "name": "specimen-projection",
+        "value": "0 26px 65px #08080c55",
+        "purpose": "Playable example separates from quiet chrome."
+      },
+      {
+        "name": "graphics-proof",
+        "value": "0 18px 42px #08080e44",
+        "purpose": "Native scene preview in its proof bay."
+      },
+      {
+        "name": "build-hover",
+        "value": "0 8px 24px #05050933",
+        "purpose": "Build action hover only."
+      }
+    ],
+    "motion": [
+      {
+        "name": "layer-ease",
+        "value": "1 - (1 - t)^4",
+        "purpose": "Seek-driven quartic layer entrance; not a CSS easing string."
+      },
+      {
+        "name": "layer-duration",
+        "value": "0.8s",
+        "purpose": "Default layerMotion entrance."
+      },
+      {
+        "name": "word-duration",
+        "value": "0.72s",
+        "purpose": "Word entrance before energy scaling."
+      },
+      {
+        "name": "word-stagger",
+        "value": "0.065s",
+        "purpose": "Successive words in a source excerpt."
+      },
+      {
+        "name": "studio-reduced-motion",
+        "value": "animation: none !important; transition: none !important",
+        "purpose": "UI override inside prefers-reduced-motion: reduce; exported composition remains authored."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "studio-wide",
+        "value": "1700px"
+      },
+      {
+        "name": "studio-columns",
+        "value": "1000px"
+      },
+      {
+        "name": "studio-stack",
+        "value": "760px"
+      },
+      {
+        "name": "graphics-narrow",
+        "value": "1100px"
+      },
+      {
+        "name": "graphics-stack",
+        "value": "820px"
+      },
+      {
+        "name": "frame-portrait-container",
+        "value": "max-aspect-ratio: 1/1"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Build editable graphics",
+      "kind": "button",
+      "refersTo": "button-build",
+      "description": "Immediate composer action; disabled while input is insufficient or work is busy.",
+      "html": "<button class=\"ds-build\" type=\"button\">Build editable graphics<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12h14m-6-6 6 6-6 6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/></svg></button>",
+      "css": ".ds-build{font-family:var(--font-body,'Manrope Variable',sans-serif);display:flex;align-items:center;justify-content:center;gap:12px;width:100%;min-height:48px;border:0;border-radius:6px;background:#dddded;color:#1d1d2b;font-size:13px;font-weight:650;cursor:pointer}.ds-build:hover:not(:disabled){background:#ededf8;box-shadow:0 8px 24px #05050933;transform:translateY(-1px)}.ds-build:focus-visible{outline:2px solid #c6c6e4;outline-offset:2px}.ds-build:disabled{background:#363641;color:#9c9cab;cursor:not-allowed}@media(prefers-reduced-motion:reduce){.ds-build{transition:none;animation:none}}"
+    },
+    {
+      "name": "Graphics primary action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Save scene and Render graphics use the pale primary action.",
+      "html": "<button class=\"ds-primary\" type=\"button\">Save scene</button>",
+      "css": ".ds-primary,.ds-secondary{font-family:var(--font-body,'Manrope Variable',sans-serif);font-size:13px;line-height:1.5;display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid #3c3c49;border-radius:5px;padding:8px 11px;min-height:36px;cursor:pointer}.ds-primary:focus-visible,.ds-secondary:focus-visible{outline:2px solid #c6c6e4;outline-offset:3px;}.ds-primary:disabled,.ds-secondary:disabled{opacity:.45;cursor:not-allowed}.ds-primary{background:#d4d4e8;color:#20202c;border-color:#d4d4e8;font-weight:650}.ds-primary:hover:not(:disabled){background:#e8e8f4}"
+    },
+    {
+      "name": "Graphics secondary action",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Back, Discard changes, Undo, and alternative exploration.",
+      "html": "<button class=\"ds-secondary\" type=\"button\">Discard changes</button>",
+      "css": ".ds-primary,.ds-secondary{font-family:var(--font-body,'Manrope Variable',sans-serif);font-size:13px;line-height:1.5;display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid #3c3c49;border-radius:5px;padding:8px 11px;min-height:36px;cursor:pointer}.ds-primary:focus-visible,.ds-secondary:focus-visible{outline:2px solid #c6c6e4;outline-offset:3px;}.ds-primary:disabled,.ds-secondary:disabled{opacity:.45;cursor:not-allowed}.ds-secondary{background:#24242d;color:#ececf2}.ds-secondary:hover:not(:disabled){background:#32323e}"
+    },
+    {
+      "name": "Script input",
+      "kind": "input",
+      "refersTo": "field-script",
+      "description": "The actual labeled authoring field in its bounded panel; maximum 5,000 characters.",
+      "html": "<section class=\"ds-script\"><label for=\"ds-script-input\">Script</label><textarea id=\"ds-script-input\" maxlength=\"5000\" placeholder=\"Paste the script you want to turn into motion...\"></textarea></section>",
+      "css": ".ds-script{font-family:var(--font-body,'Manrope Variable',sans-serif);background:#1b1b21;border:1px solid #393942;border-radius:10px;overflow:hidden;color:#ececf1}.ds-script label{display:block;font-size:13px;color:#dddde7;padding:18px 20px 0}.ds-script textarea{font-family:var(--font-body,'Manrope Variable',sans-serif);display:block;width:100%;min-height:205px;resize:vertical;border:0;background:transparent;color:#e4e4ed;caret-color:#c6c6e4;padding:18px 20px;font-size:15px;line-height:1.75}.ds-script textarea::placeholder{color:#9393a3}.ds-script textarea:focus-visible{outline:2px solid #c6c6e4;outline-offset:2px}.ds-script textarea:disabled{cursor:not-allowed}"
+    },
+    {
+      "name": "Inspector text field",
+      "kind": "input",
+      "refersTo": "field-inspector",
+      "description": "Source-backed scene values use compact, labeled editable wells.",
+      "html": "<label class=\"ds-inspector\">Source value<input value=\"3 seconds\" maxlength=\"80\"/></label>",
+      "css": ".ds-inspector{font-family:var(--font-body,'Manrope Variable',sans-serif);display:flex;flex-direction:column;gap:6px;font-size:12px;color:#bdbdce;background:#202028;padding:16px}.ds-inspector input{font-family:var(--font-body,'Manrope Variable',sans-serif);border:1px solid #41414f;background:#18181e;color:#e4e4ee;caret-color:#c6c6e4;border-radius:3px;padding:8px;min-width:0;font-size:13px;line-height:1.5}.ds-inspector input:focus-visible{outline:2px solid #c6c6e4;outline-offset:3px;}.ds-inspector input:disabled{cursor:not-allowed}"
+    },
+    {
+      "name": "Visual grammar choice",
+      "kind": "chip",
+      "refersTo": "chip-profile",
+      "description": "Existing compact profile choices; selection changes planning grammar, not keyword-derived hue.",
+      "html": "<button class=\"ds-profile\" type=\"button\" aria-pressed=\"true\">Editorial proof</button>",
+      "css": ".ds-profile{font-family:var(--font-body,'Manrope Variable',sans-serif);min-width:90px;min-height:38px;padding:10px 8px;border:1px solid #34343e;border-radius:5px;background:#1b1b21;color:#ececf1;font-size:11px;font-weight:500;cursor:pointer}.ds-profile[aria-pressed=true]{background:#30303d;border-color:#84849c}.ds-profile:hover:not(:disabled){border-color:#84849c}.ds-profile:focus-visible{outline:2px solid #c6c6e4;outline-offset:2px}.ds-profile:disabled{cursor:not-allowed}"
+    },
+    {
+      "name": "Studio navigation",
+      "kind": "nav",
+      "description": "Direct app destinations with a one-pixel active underline.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Studio\"><a href=\"/\" aria-current=\"page\">Script studio</a><a href=\"/styles\">Creator styles</a></nav>",
+      "css": ".ds-nav{font-family:var(--font-body,'Manrope Variable',sans-serif);display:flex;align-items:stretch;gap:24px;height:78px;background:#141418}.ds-nav a{position:relative;display:inline-flex;align-items:center;color:#a7a7b4;font-size:12px;text-decoration:none}.ds-nav a:hover,.ds-nav a[aria-current=page]{color:#eeeef2}.ds-nav a[aria-current=page]:after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:#c6c6e4}.ds-nav a:focus-visible{outline:2px solid #c6c6e4;outline-offset:2px}@media(max-width:760px){.ds-nav{height:64px;gap:16px}.ds-nav a{font-size:10px}}"
+    },
+    {
+      "name": "Storyboard scene",
+      "kind": "card",
+      "refersTo": "card-storyboard",
+      "description": "Scene number, timing, source headline, and family remain visible in the selected scene.",
+      "html": "<button class=\"ds-scene\" type=\"button\" aria-pressed=\"true\"><span class=\"ds-scene-time\">01<small>0.0–4.0s</small></span><strong>Every idea begins with possibility.</strong><small>title · Layout 1</small></button>",
+      "css": ".ds-scene{font-family:var(--font-body,'Manrope Variable',sans-serif);display:flex;flex-direction:column;align-items:stretch;gap:8px;width:190px;text-align:left;padding:18px 10px;border:0;border-bottom:1px solid #343440;border-radius:0;background:transparent;color:#ececf2;cursor:pointer}.ds-scene[aria-pressed=true]{background:#30303d;outline:1px solid #9292b3;outline-offset:-1px;border-radius:5px}.ds-scene:hover{background:#32323e}.ds-scene:focus-visible{outline:2px solid #c6c6e4;outline-offset:3px;}.ds-scene-time{display:flex;justify-content:space-between;color:#bcbcd6;font-variant-numeric:tabular-nums}.ds-scene strong{font-weight:500;font-size:12px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.ds-scene small{font-size:11px;color:#a6a6b8}"
+    },
+    {
+      "name": "Color reference upload",
+      "kind": "input",
+      "refersTo": "reference-upload",
+      "description": "Actual image input with local supported formats, size guidance, and focus-within.",
+      "html": "<label class=\"ds-reference\"><svg width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M16 5h6m-3-3v6M13 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-8M3 16l5-5 5 5 3-3 5 5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/></svg><span>Add a reference image<small>PNG, JPG or WebP · up to 3 MB</small></span><input type=\"file\" accept=\"image/png,image/jpeg,image/webp\" aria-label=\"Color reference image\"/></label>",
+      "css": ".ds-reference{font-family:var(--font-body,'Manrope Variable',sans-serif);position:relative;display:flex;align-items:center;gap:12px;border:1px dashed #4b4b59;border-radius:6px;padding:13px;cursor:pointer;color:#c6c6d5;font-size:12px;background:#141418}.ds-reference small{display:block;margin-top:4px;color:#9292a4;font-size:10px}.ds-reference input{position:absolute;inset:0;opacity:0;width:100%;cursor:pointer}.ds-reference:focus-within{outline:2px solid #c6c6e4;outline-offset:3px;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Indigo Motion Atelier",
+    "overview": "MotionLayer pairs a quiet indigo-charcoal editing suite with expressive authored frames. Hairline divisions, pale actions, and compact workhorse typography support script writing and scene revision. The moving artifact carries the atmosphere: a reference-derived hue, tinted texture, asymmetric depth, and a large serif-italic accent within condensed display type.\n\nThis is the explicit replacement identity for Script Studio, Graphics Studio, and newly authored motion graphics under direction seed `3ee87bc2`. It supersedes the old lime studio, centered one-field composer, and global three-template frame doctrine. The unrelated locked-video editor, dashboard, authentication, and Creator Style Library keep their incumbent registered-acetate behavior and visual guidance below; their legacy tokens are scoped compatibility values, not the identity for new studio surfaces. Existing projects and source footage are preserved.",
+    "keyCharacteristics": [
+      "Indigo-charcoal chrome with pale actions and precise, visible focus.",
+      "A large playable artifact beside script authoring on desktop.",
+      "Reference-derived frame color with textured gradients and off-center depth.",
+      "Condensed display type with one large colored serif-italic accent word.",
+      "Real, locally bundled assets and editable semantic text.",
+      "Native portrait composition and deterministic preview/export motion."
+    ],
+    "rules": [
+      {
+        "name": "The Reference Hue Rule",
+        "body": "Script keywords never select a hue. New work uses the archived sample or a sampled user reference; the inspector may explicitly revise the palette.",
+        "section": "colors"
+      },
+      {
+        "name": "The Accent Word Rule",
+        "body": "Keep the colored serif-italic accent inside a short, readable display phrase; preserve real word boundaries when the phrase wraps.",
+        "section": "typography"
+      },
+      {
+        "name": "The Shared Light Rule",
+        "body": "Conform authored assets to the scene palette and one left/top light direction; preserve source footage unchanged.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** derive frame hue from a real reference and keep one coherent palette across new work.",
+      "**Do** give the playable artifact room while keeping script input and its build action adjacent.",
+      "**Do** use short semantic display text, one colored italic accent word, and intact word boundaries.",
+      "**Do** conform original or licensed local assets to the frame's palette, lighting, grain, and crop.",
+      "**Do** compose portrait output natively and preserve deterministic preview/export timing.",
+      "**Do** retain source evidence, protected footage, keyboard focus, and reversible scene edits.",
+      "**Do** preserve unrelated legacy editor and creator-library behavior in its existing scope."
+    ],
+    "donts": [
+      "**Don't** reintroduce the rejected lime identity into Script Studio, Graphics Studio, or new motion frames.",
+      "**Don't** choose colors from script keywords or treat archived reference pixels as shipping assets.",
+      "**Don't** flatten authored depth into a full-sentence template or put motion atmosphere into every control.",
+      "**Don't** present an example render as the user's output or duplicate a statistic in its adjacent copy.",
+      "**Don't** crop landscape into portrait, rasterize editable copy, or overwrite locked source footage.",
+      "**Don't** invent controls, source claims, licenses, customer identities, or a final-review verdict."
+    ]
+  }
+}

@@ -1,0 +1,803 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+}
+
+enum JobStatus {
+  QUEUED
+  RUNNING
+  SUCCEEDED
+  FAILED
+  CANCELLED
+}
+
+enum GraphicStatus {
+  SUGGESTED
+  ACCEPTED
+  REJECTED
+  GENERATING
+  READY
+  FAILED
+  OUTDATED
+}
+
+enum AssetKind {
+  SOURCE_VIDEO
+  PROXY
+  AUDIO
+  THUMBNAIL
+  BRAND_ASSET
+  GRAPHIC_SOURCE
+  PREVIEW
+  RENDER
+}
+
+enum InputMode {
+  SCRIPT_ONLY
+  SCRIPT_NARRATION
+  LOCKED_VIDEO
+}
+
+enum ResolutionStatus {
+  RESOLVED
+  NEEDS_REVIEW
+  LOCKED
+}
+
+model User {
+  id String @id @default(cuid())
+  email String @unique
+  createdAt DateTime @default(now())
+  memberships WorkspaceMember[]
+  projects Project[]
+}
+
+model Workspace {
+  id String @id @default(cuid())
+  name String
+  createdAt DateTime @default(now())
+  members WorkspaceMember[]
+  projects Project[]
+  brandKits BrandKit[]
+  skillDefinitions SkillDefinition[]
+}
+
+model WorkspaceMember {
+  userId String
+  workspaceId String
+  role String @default("owner")
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  @@id([userId, workspaceId])
+}
+
+model Project {
+  id String @id @default(cuid())
+  name String
+  sourceLocked Boolean @default(true)
+  inputMode InputMode @default(LOCKED_VIDEO)
+  userId String
+  workspaceId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user User @relation(fields: [userId], references: [id])
+  workspace Workspace @relation(fields: [workspaceId], references: [id])
+  settings ProjectSettings?
+  sourceVideo SourceVideo?
+  assets Asset[]
+  transcripts TranscriptSegment[]
+  shots Shot[]
+  protectedRegions ProtectedRegion[]
+  motionPlans MotionPlan[]
+  graphics MotionGraphic[]
+  renderJobs RenderJob[]
+  auditEvents AuditEvent[]
+  scriptDocument ScriptDocument?
+  semanticGraphs VisualKnowledgeGraphVersion[]
+  storyboards StoryboardVersion[]
+  semanticEntities Entity[]
+  semanticSpans SemanticSpan[]
+  claims Claim[]
+  relations Relation[]
+  assetSearchIntents AssetSearchIntent[]
+  designContracts DesignContract[]
+  validationRuns ValidationRun[]
+  providerRequests ProviderRequest[]
+  costEvents CostEvent[]
+  events Event[]
+  verificationResults VerificationResult[]
+  motionBeats MotionBeat[]
+  assetLicenses AssetLicense[]
+  assetAttributions AssetAttribution[]
+  assetRenditions AssetRendition[]
+  assetSelections AssetSelection[]
+  assetUses AssetUse[]
+  compositionProject CompositionProject?
+}
+
+model ScriptDocument {
+  id String @id @default(cuid())
+  projectId String @unique
+  createdAt DateTime @default(now())
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  versions ScriptVersion[]
+}
+
+model ScriptVersion {
+  id String @id @default(cuid())
+  documentId String
+  version Int
+  verbatimText String
+  analysisText String
+  language Json
+  checksum String
+  createdAt DateTime @default(now())
+  document ScriptDocument @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  sections ScriptSection[]
+  @@unique([documentId, version])
+}
+
+model ScriptSection {
+  id String @id
+  scriptVersionId String
+  order Int
+  verbatimText String
+  language String
+  scriptVersion ScriptVersion @relation(fields: [scriptVersionId], references: [id], onDelete: Cascade)
+  sentences ScriptSentence[]
+  @@unique([scriptVersionId, order])
+}
+
+model ScriptSentence {
+  id String @id
+  sectionId String
+  order Int
+  verbatimText String
+  section ScriptSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  tokens ScriptToken[]
+  @@unique([sectionId, order])
+}
+
+model ScriptToken {
+  id String @id
+  sentenceId String
+  order Int
+  verbatimText String
+  normalizedText String
+  sentence ScriptSentence @relation(fields: [sentenceId], references: [id], onDelete: Cascade)
+  alignments TranscriptAlignment[]
+  @@unique([sentenceId, order])
+}
+
+model TranscriptAlignment {
+  id String @id @default(cuid())
+  scriptTokenId String
+  transcriptWordId String
+  version Int
+  kind String
+  confidence Float
+  scriptToken ScriptToken @relation(fields: [scriptTokenId], references: [id], onDelete: Cascade)
+  transcriptWord TranscriptWord @relation(fields: [transcriptWordId], references: [id], onDelete: Cascade)
+  @@unique([scriptTokenId, transcriptWordId, version])
+  @@index([transcriptWordId, version])
+}
+
+model VisualKnowledgeGraphVersion {
+  id String @id
+  projectId String
+  version Int
+  checksum String
+  globalNarrativeState Json
+  graph Json
+  createdAt DateTime @default(now())
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  @@unique([projectId, version])
+  @@unique([projectId, checksum])
+}
+
+model SemanticSpan {
+  id String @id
+  projectId String
+  graphVersionId String
+  source Json
+  normalizedMeaning String
+  language String
+  interpretation Json
+  ambiguities Json
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  entityMentions EntityMention[]
+  @@index([projectId, graphVersionId])
+}
+
+model Entity {
+  id String @id
+  projectId String
+  canonicalName String
+  type String
+  confidence Float
+  status ResolutionStatus
+  lockedAt DateTime?
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  aliases EntityAlias[]
+  mentions EntityMention[]
+  outgoingRelations Relation[] @relation("RelationSource")
+  incomingRelations Relation[] @relation("RelationTarget")
+  @@index([projectId, canonicalName])
+}
+
+model EntityAlias {
+  id String @id @default(cuid())
+  entityId String
+  text String
+  confidence Float
+  entity Entity @relation(fields: [entityId], references: [id], onDelete: Cascade)
+  @@unique([entityId, text])
+}
+
+model EntityMention {
+  id String @id @default(cuid())
+  entityId String
+  semanticSpanId String
+  verbatimText String
+  confidence Float
+  entity Entity @relation(fields: [entityId], references: [id], onDelete: Cascade)
+  semanticSpan SemanticSpan @relation(fields: [semanticSpanId], references: [id], onDelete: Cascade)
+  @@unique([entityId, semanticSpanId, verbatimText])
+}
+
+model Relation {
+  id String @id
+  projectId String
+  graphVersionId String
+  sourceEntityId String
+  targetEntityId String
+  type String
+  modality String
+  negated Boolean
+  confidence Float
+  evidence Json
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  sourceEntity Entity @relation("RelationSource", fields: [sourceEntityId], references: [id], onDelete: Cascade)
+  targetEntity Entity @relation("RelationTarget", fields: [targetEntityId], references: [id], onDelete: Cascade)
+  @@index([projectId, graphVersionId])
+}
+
+model Claim {
+  id String @id
+  projectId String
+  graphVersionId String
+  speaker String
+  exactText String
+  modality String
+  negated Boolean
+  status String
+  evidence Json
+  requiresReview Boolean
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  evidenceRecords ClaimEvidence[]
+  verificationResults VerificationResult[]
+  @@index([projectId, requiresReview])
+}
+
+model Event {
+  id String @id
+  projectId String
+  graphVersionId String
+  type String
+  actors Json
+  targets Json
+  time Json
+  location Json?
+  modality String
+  negated Boolean
+  evidence Json
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  @@index([projectId, graphVersionId])
+}
+
+model ClaimEvidence {
+  id String @id @default(cuid())
+  claimId String
+  sourceId String
+  sourceUrl String?
+  accessTime DateTime?
+  quotedSpan String?
+  evidence Json
+  claim Claim @relation(fields: [claimId], references: [id], onDelete: Cascade)
+  @@index([claimId])
+}
+
+model VerificationResult {
+  id String @id @default(cuid())
+  projectId String
+  claimId String?
+  status String
+  asOf DateTime?
+  evidence Json
+  createdAt DateTime @default(now())
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  claim Claim? @relation(fields: [claimId], references: [id], onDelete: SetNull)
+  @@index([projectId, status])
+}
+
+model StoryboardVersion {
+  id String @id
+  projectId String
+  version Int
+  graphVersionId String
+  settingsChecksum String
+  storyboard Json
+  createdAt DateTime @default(now())
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  @@unique([projectId, version])
+}
+
+model MotionBeat {
+  id String @id
+  projectId String
+  version Int
+  status String
+  timing Json
+  purpose String
+  semanticSpanIds Json
+  sceneType String
+  renderStrategy String
+  assets Json
+  copy Json
+  warnings Json
+  layout Json
+  designContractId String?
+  explanation String
+  createdAt DateTime @default(now())
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  @@unique([projectId, id, version])
+  @@index([projectId, status])
+}
+
+model AssetSearchIntent {
+  id String @id @default(cuid())
+  projectId String
+  purpose String
+  canonicalEntityId String?
+  intentHash String
+  query Json
+  status String
+  createdAt DateTime @default(now())
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  candidates AssetCandidate[]
+  @@unique([projectId, intentHash])
+}
+
+model AssetCandidate {
+  id String @id @default(cuid())
+  searchIntentId String
+  provider String
+  providerAssetId String?
+  canonicalSourceUrl String?
+  license Json
+  provenance Json
+  securityStatus String
+  identityConfidence Float
+  contextConfidence Float
+  contentHash String?
+  usageStatus String
+  createdAt DateTime @default(now())
+  searchIntent AssetSearchIntent @relation(fields: [searchIntentId], references: [id], onDelete: Cascade)
+  @@index([searchIntentId, usageStatus])
+}
+
+model AssetLicense {
+  id String @id @default(cuid())
+  projectId String
+  assetCandidateId String?
+  status String
+  name String?
+  url String?
+  attributionRequired Boolean
+  permittedTransformations Json?
+  policyVersion String
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  @@index([projectId, status])
+}
+
+model AssetAttribution {
+  id String @id @default(cuid())
+  projectId String
+  assetCandidateId String?
+  creator String?
+  rightsHolder String?
+  text String?
+  sourceUrl String?
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  @@index([projectId])
+}
+
+model AssetRendition {
+  id String @id
+  projectId String
+  assetCandidateId String?
+  contentHash String
+  objectKey String
+  mimeType String
+  width Int?
+  height Int?
+  duration Float?
+  codec String?
+  alpha Boolean
+  metadata Json
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  assetUses AssetUse[]
+  @@unique([projectId, contentHash])
+}
+
+model AssetSelection {
+  id String @id @default(cuid())
+  projectId String
+  motionBeatId String
+  role String
+  assetRenditionId String?
+  status String
+  locked Boolean
+  version Int
+  createdAt DateTime @default(now())
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  @@unique([projectId, motionBeatId, role, version])
+}
+
+model AssetUse {
+  id String @id @default(cuid())
+  projectId String
+  assetRenditionId String
+  graphicVersionId String
+  role String
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  assetRendition AssetRendition @relation(fields: [assetRenditionId], references: [id], onDelete: Restrict)
+  graphicVersion GraphicVersion @relation(fields: [graphicVersionId], references: [id], onDelete: Cascade)
+  @@unique([assetRenditionId, graphicVersionId, role])
+}
+
+model SkillDefinition {
+  id String @id
+  workspaceId String
+  name String
+  trustLevel String
+  source String
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  versions SkillVersion[]
+  @@index([workspaceId, name])
+}
+
+model SkillVersion {
+  id String @id @default(cuid())
+  skillDefinitionId String
+  version String
+  checksum String
+  capabilities Json
+  requiredInputs Json
+  designRules Json
+  motionRules Json
+  negativeConstraints Json
+  examples Json
+  outputContract Json
+  createdAt DateTime @default(now())
+  skillDefinition SkillDefinition @relation(fields: [skillDefinitionId], references: [id], onDelete: Cascade)
+  @@unique([skillDefinitionId, version])
+  @@unique([skillDefinitionId, checksum])
+}
+
+model DesignContract {
+  id String @id
+  projectId String
+  version Int
+  checksum String
+  sources Json
+  tokens Json
+  motionGrammar Json
+  rules Json
+  conflicts Json
+  createdAt DateTime @default(now())
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  @@unique([projectId, version])
+  @@unique([projectId, checksum])
+}
+
+model ValidationRun {
+  id String @id @default(cuid())
+  projectId String
+  graphicVersionId String?
+  compositionSourceVersionId String?
+  toolVersions Json
+  status String
+  findings Json
+  createdAt DateTime @default(now())
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  snapshots Snapshot[]
+  qcResults QCResult[]
+}
+
+model CompositionProject {
+  id String @id @default(cuid())
+  projectId String @unique
+  currentVersion Int
+  rootKey String
+  createdAt DateTime @default(now())
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  sourceVersions CompositionSourceVersion[]
+}
+
+model CompositionSourceVersion {
+  id String @id @default(cuid())
+  compositionProjectId String
+  graphicId String?
+  version Int
+  sceneSpecHash String
+  sourceHash String
+  objectKey String
+  dependencies Json
+  createdAt DateTime @default(now())
+  compositionProject CompositionProject @relation(fields: [compositionProjectId], references: [id], onDelete: Cascade)
+  @@unique([compositionProjectId, graphicId, version])
+  @@index([compositionProjectId, sceneSpecHash])
+}
+
+model Snapshot {
+  id String @id @default(cuid())
+  validationRunId String
+  atSeconds Float
+  key String
+  checksum String
+  validationRun ValidationRun @relation(fields: [validationRunId], references: [id], onDelete: Cascade)
+}
+
+model QCResult {
+  id String @id @default(cuid())
+  validationRunId String
+  kind String
+  passed Boolean
+  details Json
+  validationRun ValidationRun @relation(fields: [validationRunId], references: [id], onDelete: Cascade)
+}
+
+model ProviderRequest {
+  id String @id @default(cuid())
+  projectId String
+  stage String
+  provider String
+  model String?
+  promptVersion String?
+  inputHash String
+  outputHash String?
+  latencyMs Int?
+  usage Json?
+  repairHistory Json?
+  createdAt DateTime @default(now())
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  @@index([projectId, stage])
+}
+
+model CostEvent {
+  id String @id @default(cuid())
+  projectId String
+  stage String
+  provider String
+  graphicId String?
+  quantity Float
+  unit String
+  estimatedUsd Decimal @db.Decimal(12, 6)
+  createdAt DateTime @default(now())
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  @@index([projectId, stage])
+}
+
+model ProjectSettings {
+  id String @id @default(cuid())
+  projectId String @unique
+  platform String
+  aspectRatio String
+  width Int
+  height Int
+  fps Float
+  intensity String
+  density String
+  maxGraphics Int
+  version Int @default(1)
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}
+
+model BrandKit {
+  id String @id @default(cuid())
+  workspaceId String
+  name String
+  tokens Json
+  motionLanguage String
+  version Int @default(1)
+  createdAt DateTime @default(now())
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+}
+
+model Asset {
+  id String @id @default(cuid())
+  projectId String
+  kind AssetKind
+  key String
+  filename String
+  mime String
+  bytes BigInt
+  sha256 String
+  metadata Json?
+  createdAt DateTime @default(now())
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  sourceVideo SourceVideo?
+  @@index([projectId, kind])
+}
+
+model SourceVideo {
+  id String @id @default(cuid())
+  projectId String @unique
+  assetId String @unique
+  duration Float
+  width Int
+  height Int
+  fps Float
+  videoCodec String
+  audioCodec String?
+  rotation Int @default(0)
+  probe Json
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  asset Asset @relation(fields: [assetId], references: [id], onDelete: Restrict)
+}
+
+model TranscriptSegment {
+  id String @id @default(cuid())
+  projectId String
+  startSeconds Float
+  endSeconds Float
+  speaker String?
+  text String
+  rawText String?
+  normalizedBy String?
+  normalizedAt DateTime?
+  confidence Float?
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  words TranscriptWord[]
+  @@index([projectId, startSeconds])
+}
+
+model TranscriptWord {
+  id String @id @default(cuid())
+  segmentId String
+  startSeconds Float
+  endSeconds Float
+  text String
+  confidence Float?
+  corrected Boolean @default(false)
+  segment TranscriptSegment @relation(fields: [segmentId], references: [id], onDelete: Cascade)
+  alignments TranscriptAlignment[]
+}
+
+model Shot {
+  id String @id @default(cuid())
+  projectId String
+  startSeconds Float
+  endSeconds Float
+  hardCut Boolean
+  score Float
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}
+
+model ProtectedRegion {
+  id String @id @default(cuid())
+  projectId String
+  kind String
+  startSeconds Float
+  endSeconds Float
+  bounds Json
+  confidence Float
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}
+
+model MotionPlan {
+  id String @id @default(cuid())
+  projectId String
+  version Int
+  promptVersion String
+  plan Json
+  createdAt DateTime @default(now())
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  @@unique([projectId, version])
+}
+
+model MotionGraphic {
+  id String @id
+  projectId String
+  stableKey String
+  type String
+  startSeconds Float
+  endSeconds Float
+  status GraphicStatus
+  evidence Json
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  versions GraphicVersion[]
+  revisions PromptRevision[]
+  @@unique([projectId, stableKey])
+}
+
+model GraphicVersion {
+  id String @id @default(cuid())
+  graphicId String
+  version Int
+  promptInput Json
+  instructions Json
+  sourceFiles Json
+  dependencies Json
+  validation Json?
+  createdAt DateTime @default(now())
+  graphic MotionGraphic @relation(fields: [graphicId], references: [id], onDelete: Cascade)
+  assetUses AssetUse[]
+  @@unique([graphicId, version])
+}
+
+model PromptRevision {
+  id String @id @default(cuid())
+  graphicId String
+  scope String
+  prompt String
+  interpretation Json
+  createdAt DateTime @default(now())
+  graphic MotionGraphic @relation(fields: [graphicId], references: [id], onDelete: Cascade)
+}
+
+model RenderJob {
+  id String @id @default(cuid())
+  projectId String
+  status JobStatus
+  stage String
+  idempotencyKey String @unique
+  progress Float @default(0)
+  error Json?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  artifacts RenderArtifact[]
+  manifests RenderManifest[]
+}
+
+model RenderManifest {
+  id String @id @default(cuid())
+  renderJobId String
+  manifestHash String
+  sourceHash String
+  dependencies Json
+  outputSpecification Json
+  runtimeVersions Json
+  objectKey String
+  createdAt DateTime @default(now())
+  renderJob RenderJob @relation(fields: [renderJobId], references: [id], onDelete: Cascade)
+  @@unique([renderJobId, manifestHash])
+}
+
+model RenderArtifact {
+  id String @id @default(cuid())
+  renderJobId String
+  format String
+  key String
+  manifest Json
+  verified Boolean @default(false)
+  createdAt DateTime @default(now())
+  renderJob RenderJob @relation(fields: [renderJobId], references: [id], onDelete: Cascade)
+}
+
+model AuditEvent {
+  id String @id @default(cuid())
+  projectId String
+  actorId String
+  action String
+  payload Json
+  createdAt DateTime @default(now())
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  @@index([projectId, createdAt])
+}

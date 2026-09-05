@@ -1,0 +1,11 @@
+{
+  "duration": 18,
+  "assertions": [
+    { "kind": "appearsBy", "selector": "#mg-hook-title", "bySec": 1.1 },
+    { "kind": "staysInFrame", "selector": "#mg-hook" },
+    { "kind": "staysInFrame", "selector": "#mg-lower" },
+    { "kind": "staysInFrame", "selector": "#mg-steps" },
+    { "kind": "staysInFrame", "selector": "#mg-quote" },
+    { "kind": "staysInFrame", "selector": "#mg-stat" }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "name": "motionlayer",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "dev:webpack": "node --preserve-symlinks --preserve-symlinks-main node_modules/next/dist/bin/next dev --webpack",
+    "build": "node --preserve-symlinks --preserve-symlinks-main node_modules/next/dist/bin/next build --webpack",
+    "start": "next start",
+    "start:local": "node scripts/start-local.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "fixture:media": "node scripts/create-fixture.mjs",
+    "ffmpeg:setup": "powershell -ExecutionPolicy Bypass -File scripts/setup-ffmpeg.ps1",
+    "s1:setup": "powershell -ExecutionPolicy Bypass -File scripts/setup-s1-mini.ps1",
+    "whisper:setup": "powershell -ExecutionPolicy Bypass -File scripts/setup-whisper.ps1",
+    "speech:setup": "npm run ffmpeg:setup && npm run whisper:setup && npm run s1:setup",
+    "hyperframes:lint": "hyperframes lint fixtures/hyperframes/demo",
+    "hyperframes:check": "hyperframes check fixtures/hyperframes/demo",
+    "hyperframes:render": "node scripts/render-fixture.mjs",
+    "benchmark:render": "node scripts/benchmark-hyperframes.mjs",
+    "verify": "npm run typecheck && npm run test && npm run build"
+  },
+  "dependencies": {
+    "@fontsource-variable/manrope": "latest",
+    "@fontsource-variable/space-grotesk": "latest",
+    "@hyperframes/core": "0.8.19",
+    "@hyperframes/producer": "0.8.19",
+    "@paper-design/shaders": "0.0.80",
+    "@paper-design/shaders-react": "0.0.80",
+    "@prisma/client": "6.19.0",
+    "bullmq": "latest",
+    "esbuild": "0.25.12",
+    "fflate": "0.8.3",
+    "hyperframes": "0.8.19",
+    "lucide-react": "latest",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "sharp": "0.35.4",
+    "zod": "latest"
+  },
+  "devDependencies": {
+    "@playwright/test": "latest",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "prisma": "6.19.0",
+    "typescript": "latest",
+    "vitest": "latest"
+  }
+}

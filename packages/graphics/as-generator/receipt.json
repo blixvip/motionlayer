@@ -1,0 +1,32 @@
+{
+  "upstream": "as-generator/src/generator.ts",
+  "sha256": "214c246b09a47e0067fddf72fa1ceb5122578532e5d0afb8820402b9340c7fb7",
+  "acquisition": "Vendored exact sourceBundle engine; exported modules adapted with media/material slots and seek-driven Paper rendering.",
+  "recipes": {
+    "profile": {
+      "name": "shadcn Card profile composition",
+      "source": "https://ui.shadcn.com/docs/components/base/card",
+      "license": "MIT",
+      "acquisition": "Actual local asGenerator sourceBundle output; catalog anatomy is reference, not an installed shadcn component."
+    },
+    "card": {
+      "name": "shadcn Card",
+      "source": "https://ui.shadcn.com/docs/components/base/card",
+      "license": "MIT",
+      "acquisition": "Actual local asGenerator sourceBundle output; catalog anatomy is reference, not an installed shadcn component."
+    },
+    "alert": {
+      "name": "shadcn Alert",
+      "source": "https://ui.shadcn.com/docs/components/base/alert",
+      "license": "MIT",
+      "acquisition": "Actual local asGenerator sourceBundle output; catalog anatomy is reference, not an installed shadcn component."
+    },
+    "badge": {
+      "name": "shadcn Badge",
+      "source": "https://ui.shadcn.com/docs/components/base/badge",
+      "license": "MIT",
+      "acquisition": "Actual local asGenerator sourceBundle output; catalog anatomy is reference, not an installed shadcn component."
+    }
+  },
+  "license": "User-owned local asGenerator source. Preserve upstream ownership."
+}

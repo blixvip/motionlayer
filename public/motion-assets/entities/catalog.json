@@ -1,0 +1,38 @@
+{
+  "openai": {
+    "file": "f17fa3fa94204c9df760b343.png",
+    "sourceUrl": "https://svgl.app/library/openai.svg",
+    "license": "Brand mark · editorial identification",
+    "credit": "OpenAI logo (official mark) · svgl; trademarks belong to their owners."
+  },
+  "claude": {
+    "file": "76488a868a09e2079c0dd7f7.png",
+    "sourceUrl": "https://github.com/simple-icons/simple-icons/blob/16.25.0/icons/claude.svg",
+    "license": "Brand mark · editorial identification",
+    "credit": "claude logo (official monochrome glyph) · simple-icons; trademarks belong to their owners."
+  },
+  "grok": {
+    "file": "d63afea2de8837bc2060e16c.png",
+    "sourceUrl": "https://svgl.app/library/grok-light.svg",
+    "license": "Brand mark · editorial identification",
+    "credit": "Grok logo (official mark) · svgl; trademarks belong to their owners."
+  },
+  "twitter": {
+    "file": "6a7da7aa01e7d4de924d0914.png",
+    "sourceUrl": "https://svgl.app/library/twitter.svg",
+    "license": "Brand mark · editorial identification",
+    "credit": "Twitter logo (official mark) · svgl; trademarks belong to their owners."
+  },
+  "bernie-sanders": {
+    "file": "d8da1688b2397a112799d956.png",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bernie_Sanders_February_2026_(cropped).jpg",
+    "license": "CC BY-SA 4.0",
+    "credit": "Anderseidesvik · CC BY-SA 4.0 · resized for layout"
+  },
+  "discord": {
+    "file": "9a0c0894318261c87fc82340.png",
+    "sourceUrl": "https://svgl.app/library/discord.svg",
+    "license": "Brand mark ? editorial identification",
+    "credit": "Discord mark ? svgl; trademarks belong to their owners."
+  }
+}

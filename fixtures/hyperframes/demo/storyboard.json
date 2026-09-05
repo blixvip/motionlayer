@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 3,
+  "composition": {
+    "fps": 30,
+    "width": 1280,
+    "height": 720,
+    "durationSeconds": 18,
+    "layout": "landscape",
+    "themeId": "motionlayer-dark",
+    "seed": 42
+  },
+  "videoTrack": {
+    "sourcePath": "assets/input-video.mp4",
+    "startSec": 0,
+    "endSec": 18,
+    "bounds": { "x": 0, "y": 0, "width": 1280, "height": 720 }
+  },
+  "subtitles": { "enabled": false },
+  "cards": [
+    { "id": "mg-hook", "intent": "Orient with the locked-edit promise", "startSec": 0.45, "endSec": 3.1, "accentIndex": 0, "zone": "video-overlay", "contentHints": { "kicker": "MOTION WITH INTENTION", "title": "Protect the edit.", "detail": "Add only what earns its frame." } },
+    { "id": "mg-lower", "intent": "Confirm the immutable source state", "startSec": 3.8, "endSec": 7, "accentIndex": 0, "zone": "lower-third", "contentHints": { "kicker": "SOURCE EDIT", "title": "Locked · timing preserved" } },
+    { "id": "mg-steps", "intent": "Clarify the three-stage workflow", "startSec": 7.7, "endSec": 11.55, "accentIndex": 0, "zone": "side-panel", "contentHints": { "title": "From source to motion", "steps": ["Understand", "Plan", "Generate"] } },
+    { "id": "mg-quote", "intent": "Emphasize the creative principle", "startSec": 12, "endSec": 15.05, "accentIndex": 0, "zone": "video-overlay", "contentHints": { "title": "Less decoration. Clearer ideas." } },
+    { "id": "mg-stat", "intent": "Close on the approved workflow", "startSec": 15.35, "endSec": 17.8, "accentIndex": 0, "zone": "video-overlay", "contentHints": { "value": "3", "title": "deliberate passes", "detail": "Approve · Revise · Export" } }
+  ]
+}
