@@ -1,5 +1,7 @@
 ﻿# MotionLayer
 
+[![Discord](https://img.shields.io/badge/Discord-Join%20the%20community-5865F2?logo=discord&logoColor=white)](https://discord.gg/zEB4VjmfSb)
+
 MotionLayer turns scripts and edited video into editable motion graphics. It recognizes people, brands, and relationships, then builds portrait scenes, statements, animated message networks, sandbox diagrams, and process sequences.
 
 The renderer integrates the actual asGenerator source factory and its generated components with Paper Shaders. Preview and export share the same React implementation. Timestamped scripts preserve their supplied intervals and lock scene timing by default.
@@ -68,3 +70,7 @@ Third-party assets and dependencies retain their existing ownership and licenses
 - [Contextual motion graphics](docs/semantic-motion.md)
 - [Deployment design notes](docs/deployment.md)
 - [Locked source and render boundaries](docs/adr/0001-locked-source-and-render-boundary.md)
+
+## Community
+
+💬 [Join the Discord](https://discord.gg/zEB4VjmfSb) for questions, help, feedback, and updates.
