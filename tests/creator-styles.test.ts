@@ -11,7 +11,6 @@ describe("creator style library", () => {
     expect(creator.id).toBe("nick-puru");
     expect(creator.channelHandle).toBe("@NicholasPuru");
     expect(creator.channelUrl).toBe("https://www.youtube.com/@NicholasPuru");
-    expect(creator.avatarUrl).toBe("/creators/nick-puru.jpg");
     expect(creator.sources).toHaveLength(23);
     expect(new Set(creator.sources.map((source) => source.id)).size).toBe(23);
     expect(new Set(creator.sources.map((source) => source.url)).size).toBe(23);
@@ -27,7 +26,6 @@ describe("creator style library", () => {
 
     expect(creator.channelHandle).toBe("@nickautomates");
     expect(creator.channelUrl).toBe("https://www.youtube.com/@nickautomates");
-    expect(creator.avatarUrl).toBe("/creators/nick-automates.jpg");
     expect(creator.sources).toHaveLength(32);
     expect(new Set(creator.sources.map((source) => source.id)).size).toBe(32);
     expect(new Set(creator.sources.map((source) => source.url)).size).toBe(32);
@@ -44,7 +42,6 @@ describe("creator style library", () => {
 
     expect(creator.channelHandle).toBe("@austin.marchese");
     expect(creator.channelUrl).toBe("https://www.youtube.com/@austin.marchese");
-    expect(creator.avatarUrl).toBe("/creators/austin-marchese.jpg");
     expect(creator.sources).toHaveLength(18);
     expect(new Set(creator.sources.map((source) => source.id)).size).toBe(18);
     expect(new Set(creator.sources.map((source) => source.url)).size).toBe(18);
@@ -62,7 +59,6 @@ describe("creator style library", () => {
 
     expect(creator.channelHandle).toBe("@Dubibubiii");
     expect(creator.channelUrl).toBe("https://www.youtube.com/@Dubibubiii");
-    expect(creator.avatarUrl).toBe("/creators/dubibubi.jpg");
     expect(creator.sources).toHaveLength(14);
     expect(new Set(creator.sources.map((source) => source.id)).size).toBe(14);
     expect(new Set(creator.sources.map((source) => source.url)).size).toBe(14);
@@ -79,8 +75,6 @@ describe("creator style library", () => {
     if (!creator) throw new Error("InsiderForce creator profile was not loaded.");
 
     expect(creator.channelHandle).toBe("@InsiderForce");
-    expect(creator.avatarUrl).toBe("/creators/insider-force.jpg");
-    expect(creator.scriptArchiveUrl).toBe("/creator-scripts/insider-force.md");
     expect(creator.sources).toHaveLength(16);
     expect(new Set(creator.sources.map((source) => source.id)).size).toBe(16);
     expect(creator.prompts.map((prompt) => prompt.id)).toContain("claims-audit");

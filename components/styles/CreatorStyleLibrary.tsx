@@ -25,7 +25,7 @@ function CreatorProfile({ creator, copiedId, onCopy, onCopyArchive }: { creator:
     <div className="creator-profile-head">
       <div className="creator-profile-lead">
         <a className="creator-identity" href={creator.channelUrl} target="_blank" rel="noreferrer" aria-label={`Open ${creator.name} on YouTube`}>
-          <img src={creator.avatarUrl} alt={`${creator.name} YouTube profile`} referrerPolicy="no-referrer" />
+          <span className="creator-initials" aria-hidden="true">{creator.name.split(/\s+/).map((part) => part[0]).join("").slice(0, 2).toUpperCase()}</span>
           <span><strong>{creator.name}</strong><small><span>{creator.channelHandle}</span><span>{creator.sourceCount} transcripts studied</span></small></span>
         </a>
         <p className="creator-summary">{creator.summary}</p>

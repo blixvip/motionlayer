@@ -25,10 +25,12 @@ export const creatorStyleSchema = z.object({
   name: z.string().min(1),
   channelHandle: z.string().min(1),
   channelUrl: z.string().url(),
+  // Creator photos and scripts belong to the creators, so none ship with the repo.
+  // A profile may point at an image the user supplies locally.
   avatarUrl: z.string().refine(
     (value) => value.startsWith("/") || z.string().url().safeParse(value).success,
     "Expected a local asset path or URL",
-  ),
+  ).optional(),
   scriptArchiveUrl: z.string().startsWith("/").optional(),
   sourceCount: z.number().int().positive(),
   summary: z.string().min(1),
